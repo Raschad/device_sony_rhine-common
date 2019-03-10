@@ -14,7 +14,7 @@
 
 # inherit from msm8974-common
 $(call inherit-product, device/sony/msm8974-common/msm8974.mk)
-
+$(call inherit-product, device/sony/msm8974-common/msm8974_omni.mk)
 COMMON_PATH := device/sony/rhine-common
 
 DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
