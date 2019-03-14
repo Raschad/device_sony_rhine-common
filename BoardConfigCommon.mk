@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # inherit from msm8974-common
-include device/sony/msm8974-common/BoardConfigCommonOmni.mk
+include device/sony/msm8974-common/BoardConfigCommon.mk
 
 TARGET_SPECIFIC_HEADER_PATH += device/sony/rhine-common/include
 
