@@ -85,6 +85,13 @@ on early-boot
     exec /system/bin/sh /system/etc/pre_hw_config.sh
 
 on boot
+    # Touch
+    chown system system /sys/devices/virtual/input/input1/wakeup_gesture
+
+    # Glove input
+    chown system system /sys/devices/virtual/input/input1/glove
+    chmod 0660 /sys/devices/virtual/input/input1/glove
+
     write /sys/module/qpnp_power_on/parameters/forcecrash_on 1
 
     chmod 0660 /sys/class/rfkill/rfkill0/state
