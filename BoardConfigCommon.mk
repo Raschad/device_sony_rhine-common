@@ -107,5 +107,8 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/sony/rhine-common
 
+# DT2W
+TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/input1/wakeup_gesture"
+
 # Binder API version
 TARGET_USES_64_BIT_BINDER := true

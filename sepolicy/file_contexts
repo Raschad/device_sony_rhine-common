@@ -2,3 +2,7 @@
 
 # WIFI
 /sys/module/wlan/parameters/fwpath                      u:object_r:sysfs_wlan_fwpath:s0
+
+#Touch
+/sys/devices/virtual/input/input1/glove -- u:object_r:sysfs_touch:s0
+/sys/devices/virtual/input/input1/wakeup_gesture -- u:object_r:sysfs_touch:s0
