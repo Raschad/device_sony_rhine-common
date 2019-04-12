@@ -1,0 +1,2 @@
+allow hal_lineage_touch_default sys_devices_virtual_input_input1:dir search;
+allow hal_lineage_touch_default sys_devices_virtual_input_input1:file rw_file_perms;
