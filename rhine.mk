@@ -75,6 +75,9 @@ PRODUCT_PACKAGES += \
     wait4tad_static \
     libshim_cald \
     libc_util \
+    libshims_signal \
+    libshims_idd \
+    libsonycamera \
     libshim_camera
 
 # Init
