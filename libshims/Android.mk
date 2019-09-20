@@ -1,5 +1,4 @@
 # Copyright (C) 2015-2016 The CyanogenMod Project
-# Copyright (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,14 +15,13 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-
-LOCAL_SRC_FILES := atomic.c
+LOCAL_SRC_FILES := symbols/atomic.cpp
+LOCAL_MODULE := libshim_atomic
 LOCAL_WHOLE_STATIC_LIBRARIES := libcutils
-LOCAL_SHARED_LIBRARIES := liblog
-LOCAL_MODULE := libc_util
 LOCAL_PROPRIETARY_MODULE := true
+LOCAL_SHARED_LIBRARIES := liblog
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_TAGS := optional
-
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
@@ -32,62 +30,6 @@ LOCAL_SRC_FILES := ril_preload.c
 LOCAL_MODULE := libshim_ril_preload
 LOCAL_PROPRIETARY_MODULE := true
 LOCAL_MODULE_TAGS := optional
-
-include $(BUILD_SHARED_LIBRARY)
-
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := signal.c
-LOCAL_MODULE := libshims_signal
-LOCAL_SHARED_LIBRARIES := libc
-LOCAL_MODULE_TAGS := optional
-LOCAL_32_BIT_ONLY := true
-LOCAL_PROPRIETARY_MODULE := true
-include $(BUILD_SHARED_LIBRARY)
-
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := idd.c
-LOCAL_MODULE := libshims_idd
-LOCAL_MODULE_TAGS := optional
-LOCAL_32_BIT_ONLY := true
-LOCAL_PROPRIETARY_MODULE := true
-include $(BUILD_SHARED_LIBRARY)
-
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := libsonycamera.cpp
-LOCAL_MODULE := libsonycamera
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LOCAL_SHARED_LIBRARIES := liblog
-LOCAL_32_BIT_ONLY := true
-LOCAL_PROPRIETARY_MODULE := true
-include $(BUILD_SHARED_LIBRARY)
-
-# libshim_cald
-include $(CLEAR_VARS)
-
-LOCAL_SRC_FILES := \
-    gui/SensorManager.cpp \
-    symbols/Parcel.cpp \
-    utils/VectorImpl.cpp
-
-LOCAL_C_INCLUDES := \
-    $(LOCAL_PATH)/include \
-    external/safe-iop/include \
-    system/core/libutils
-
-LOCAL_SHARED_LIBRARIES := \
-    libcutils \
-    libgui \
-    libbinder \
-    libsensor \
-    libutils \
-    liblog
-
-LOCAL_MODULE := libshim_cald
-
-LOCAL_PROPRIETARY_MODULE := true
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 
 include $(BUILD_SHARED_LIBRARY)
 

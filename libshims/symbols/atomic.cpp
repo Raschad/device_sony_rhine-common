@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-#include "signal.h"
-
-sighandler_t bsd_signal(int signum, sighandler_t handler) {
-   return signal(signum, handler);
+#include <string>
+#define ANDROID_ATOMIC_INLINE
+extern "C" {
+#include <cutils/atomic.h>
 }
-
