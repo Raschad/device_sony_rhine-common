@@ -22,7 +22,7 @@ import /init.msm8974-common.rc
 
 on init
     # BoringSSL hacks, RIL hacks
-    export LD_PRELOAD "libboringssl-compat.so:/system/vendor/lib/libshim_ril_preload.so"
+    export LD_PRELOAD "libboringssl-compat.so:/vendor/lib/libshim_ril_preload.so"
 
 on early-boot
     #exec /system/bin/sh /system/etc/init.qcom.wifi.sh
@@ -31,7 +31,7 @@ on early-boot
     chown system system /sys/class/leds/wled:backlight/max_brightness
 
 on boot
-    exec /system/vendor/bin/btnvtool -O
+    exec /vendor/bin/btnvtool -O
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
@@ -100,7 +100,7 @@ on property:vendor.bluetooth.hciattach=false
     setprop vendor.bluetooth.status off
 
 # Wi-Fi and BT MAC addresses
-service macaddrsetup /system/vendor/bin/macaddrsetup /sys/devices/fb000000.qcom,wcnss-wlan/wcnss_mac_addr
+service macaddrsetup /vendor/bin/macaddrsetup /sys/devices/fb000000.qcom,wcnss-wlan/wcnss_mac_addr
     class late_start
     user root
     oneshot
@@ -110,7 +110,7 @@ service hw_config /system/bin/sh /system/etc/hw_config.sh
     user root
     oneshot
 
-service wpa_supplicant /system/vendor/bin/hw/wpa_supplicant \
+service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -O/data/vendor/wifi/wpa/sockets -puse_p2p_group_interface=1 \
     -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
@@ -132,7 +132,7 @@ service wcnss-service /system/bin/wcnss_service
     disabled
     oneshot
 
-service ptt_socket_app /system/vendor/bin/ptt_socket_app
+service ptt_socket_app /vendor/bin/ptt_socket_app
     class main
     user system
     group system
@@ -144,7 +144,7 @@ service ims_regmanager /system/bin/exe-ims-regmanagerprocessnative
     disabled
 
 # OSS time
-service timekeep /system/vendor/bin/timekeep restore
+service timekeep /vendor/bin/timekeep restore
     class late_start
     user root
     group root
