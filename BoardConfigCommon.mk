@@ -15,20 +15,22 @@
 # inherit from msm8974-common
 include device/sony/msm8974-common/BoardConfigCommon.mk
 
-TARGET_SPECIFIC_HEADER_PATH += device/sony/rhine-common/include
+#TARGET_SPECIFIC_HEADER_PATH += device/sony/rhine-common/include
+
+COMMON_PATH := device/sony/rhine-common
 
 # Platform
 BOARD_VENDOR_PLATFORM := rhine
 PRODUCT_PLATFORM := rhine
 
 # Kernel information
-BOARD_KERNEL_IMAGE_NAME := zImage
+BOARD_KERNEL_IMAGE_NAME := zImage-dtb
 BOARD_KERNEL_BASE     := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE  := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3b7 ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1 vmalloc=300M dwc3.maximum_speed=high dwc3_msm.prop_chg_detect=Y
 BOARD_KERNEL_CMDLINE  += androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS  := --ramdisk_offset 0x02000000 --tags_offset 0x01E00000
-BOARD_KERNEL_SEPARATED_DT := true
+#BOARD_KERNEL_SEPARATED_DT := true
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-smd"
@@ -47,7 +49,7 @@ BLUETOOTH_HCI_USE_MCT := true
 
 
 # Lineage Hardware
-BOARD_HARDWARE_CLASS += device/sony/rhine-common/lineagehw
+BOARD_HARDWARE_CLASS += $(COMMON_PATH)/lineagehw
 
 # Camera
 TARGET_PROVIDES_CAMERA_HAL := true
@@ -130,34 +132,34 @@ BOARD_HAVE_QCOM_FM := true
 TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # Filesystem
-TARGET_FS_CONFIG_GEN += device/sony/rhine-common/config.fs
+TARGET_FS_CONFIG_GEN += $(COMMON_PATH)/config.fs
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_rhine
+TARGET_INIT_VENDOR_LIB := //$(COMMON_PATH):libinit_rhine
 
 # SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/sony/rhine-common/sepolicy-tmp
+#BOARD_SEPOLICY_DIRS += \
 #    device/sony/rhine-common/sepolicy
+BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy-tmp
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
-	/system/vendor/bin/credmgrd|/system/vendor/lib/libshims_signal.so \
-	/system/vendor/bin/iddd|/system/vendor/lib/libshims_idd.so \
-	/system/vendor/bin/suntrold|/system/vendor/lib/libshims_signal.so \
-	/system/lib/hw/camera.vendor.qcom.so|/system/vendor/lib/libsonycamera.so \
-	/system/lib/hw/camera.vendor.qcom.so|/system/vendor/lib/libshim_camera.so \
-	/system/lib/hw/camera.vendor.qcom.so|/system/vendor/lib/libshim_cald.so \
+	/vendor/bin/credmgrd|/vendor/lib/libshims_signal.so \
+	/vendor/bin/iddd|/vendor/lib/libshims_idd.so \
+	/vendor/bin/suntrold|/vendor/lib/libshims_signal.so \
+	/system/lib/hw/camera.vendor.qcom.so|/vendor/lib/libsonycamera.so \
+	/system/lib/hw/camera.vendor.qcom.so|/vendor/lib/libshim_camera.so \
+	/system/lib/hw/camera.vendor.qcom.so|/vendor/lib/libshim_cald.so \
 	/system/lib/hw/camera.vendor.qcom.so|libsensor.so \
-	/system/lib/libcald_pal.so|/system/vendor/lib/libshim_cald.so \
-	/system/lib/libcammw.so|/system/vendor/lib/libshim_cald.so \
+	/system/lib/libcald_pal.so|/vendor/lib/libshim_cald.so \
+	/system/lib/libcammw.so|/vendor/lib/libshim_cald.so \
 	/system/lib/libcammw.so|libsensor.so \
-	/system/lib/libsomc_chokoballpal.so|/system/vendor/lib/libshim_camera.so \
-	/system/vendor/bin/mm-qcamera-daemon|/system/vendor/lib/libc_util.so \
-	/system/vendor/bin/mm-qcamera-daemon|libandroid.so
+	/system/lib/libsomc_chokoballpal.so|/vendor/lib/libshim_camera.so \
+	/vendor/bin/mm-qcamera-daemon|/vendor/lib/libc_util.so \
+	/vendor/bin/mm-qcamera-daemon|libandroid.so
 
 # Platform props
-TARGET_SYSTEM_PROP += device/sony/rhine-common/system.prop
+TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
 
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
@@ -184,7 +186,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 BOARD_ROOT_EXTRA_FOLDERS := idd lta-label
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/sony/rhine-common/rootdir/fstab.full
+TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/fstab.full
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
