@@ -1,1 +1,2 @@
 type logo_rle, file_type;
+type tmp_root_mount_file, file_type;
