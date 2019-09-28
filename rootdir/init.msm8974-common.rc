@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-import /init.sony.rc
-import /init.sony.usb.rc
+import /vendor/etc/init/hw/init.sony.rc
+import /vendor/etc/init/hw/init.sony.usb.rc
 
 on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
@@ -57,7 +57,7 @@ on init
     setprop persist.sys.wfd.virtual 0
 
 on fs
-    mount_all fstab.qcom
+    mount_all ./vendor/etc/fstab.qcom
 
     # Adaptive LMK
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
@@ -338,7 +338,7 @@ on post-fs-data
 
 on property:sys.boot_completed=1
     # Enable ZRAM on boot_complete
-    swapon_all fstab.qcom
+    swapon_all ./vendor/etc/fstab.qcom
 
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /vendor/bin/qmuxd
