@@ -15,7 +15,6 @@
 # limitations under the License.
 #
 
-import /init.device.rc
 import /vendor/etc/init/hw/init.camera.rc
 import /vendor/etc/init/hw/init.qcom.power.rc
 import /vendor/etc/init/hw/init.msm8974-common.rc
